@@ -23,8 +23,8 @@ export default function Landing({ onNext }: { onNext: () => void }) {
       transition={{ duration: 1.5 }}
       className="relative flex flex-col items-center justify-center min-h-screen bg-transparent overflow-hidden"
     >
-      {/* Background texture / overlay */}
-      <div className="absolute inset-0 z-0 opacity-10 mix-blend-overlay pointer-events-none bg-[url('https://images.unsplash.com/photo-1579546929518-9e396f3cc809?auto=format&fit=crop&w=2000&q=80')] bg-cover bg-center" />
+      {/* Luxurious CSS radial texture / overlay (0 bytes network load) */}
+      <div className="absolute inset-0 z-0 opacity-20 pointer-events-none bg-[radial-gradient(circle_at_center,_rgba(251,113,133,0.15)_0%,_transparent_70%)]" />
 
       {/* Floating petals placeholder - using stable state animations */}
       {petals.map((petal) => (

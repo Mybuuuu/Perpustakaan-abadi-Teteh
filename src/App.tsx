@@ -1,4 +1,4 @@
-import { useState, useEffect, lazy, Suspense } from 'react';
+import { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 import Lenis from 'lenis';
 import Landing from './components/Landing';
@@ -6,8 +6,7 @@ import AudioPlayer from './components/AudioPlayer';
 import FloatingParticles from './components/FloatingParticles';
 
 import Envelope from './components/Envelope';
-
-const Scrapbook = lazy(() => import('./components/Scrapbook'));
+import Scrapbook from './components/Scrapbook';
 
 export type Stage = 'landing' | 'envelope' | 'scrapbook';
 
@@ -88,9 +87,7 @@ export default function App() {
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
             className="w-full h-full"
           >
-            <Suspense fallback={null}>
-              <Scrapbook />
-            </Suspense>
+            <Scrapbook />
           </motion.div>
         )}
       </AnimatePresence>

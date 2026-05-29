@@ -286,7 +286,7 @@ export default function Envelope({ onNext, onFirstTap }: { onNext: () => void; o
 
         {/* Back Cover / Envelope Cavity Wall */}
         <div className="absolute inset-0 bg-[#3D0A11] shadow-2xl rounded-sm border border-black/10 overflow-hidden">
-          <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/rice-paper-2.png')] opacity-25 mix-blend-overlay pointer-events-none" />
+          <div className="absolute inset-0 bg-[url('/images/rice-paper-2.png')] opacity-25 mix-blend-overlay pointer-events-none" />
           {/* Velvet shadows */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20 pointer-events-none" />
         </div>
@@ -329,7 +329,7 @@ export default function Envelope({ onNext, onFirstTap }: { onNext: () => void; o
         <div 
           className="absolute bottom-0 w-full h-[62%] bg-[#7E1A23] shadow-[0_-8px_16px_rgba(0,0,0,0.3)] drop-shadow-lg [clip-path:polygon(0_100%,50%_0,100%_100%)] rounded-sm overflow-hidden z-10"
         >
-          <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/rice-paper-2.png')] opacity-25 mix-blend-overlay pointer-events-none" />
+          <div className="absolute inset-0 bg-[url('/images/rice-paper-2.png')] opacity-25 mix-blend-overlay pointer-events-none" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#4a0810]/50 to-transparent pin-bottom pointer-events-none" />
           {/* Soft foliage corner accent */}
           <div className="absolute bottom-2 left-3 text-rose/10 text-3xl rotate-45 pointer-events-none z-0">✿</div>
@@ -344,7 +344,7 @@ export default function Envelope({ onNext, onFirstTap }: { onNext: () => void; o
           transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
           style={{ transformOrigin: 'top' }}
         >
-          <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/rice-paper-2.png')] opacity-25 mix-blend-overlay pointer-events-none" />
+          <div className="absolute inset-0 bg-[url('/images/rice-paper-2.png')] opacity-25 mix-blend-overlay pointer-events-none" />
           <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-transparent pointer-events-none" />
           
           <AnimatePresence>

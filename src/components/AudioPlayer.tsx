@@ -15,19 +15,23 @@ export default function AudioPlayer({ stage, userInteracted, setUserInteracted, 
   const mainAudioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
-    introAudioRef.current = new Audio('/audio/intro.mp3');
-    introAudioRef.current.loop = true;
-    introAudioRef.current.preload = 'none';
-    
-    mainAudioRef.current = new Audio('/audio/main.mp3');
-    mainAudioRef.current.loop = true;
-    mainAudioRef.current.preload = 'none';
-
+    if (userInteracted) {
+      if (!introAudioRef.current) {
+        introAudioRef.current = new Audio('/audio/intro.mp3');
+        introAudioRef.current.loop = true;
+        introAudioRef.current.preload = 'auto';
+      }
+      if (!mainAudioRef.current) {
+        mainAudioRef.current = new Audio('/audio/main.mp3');
+        mainAudioRef.current.loop = true;
+        mainAudioRef.current.preload = 'auto';
+      }
+    }
     return () => {
       introAudioRef.current?.pause();
       mainAudioRef.current?.pause();
     };
-  }, []);
+  }, [userInteracted]);
 
   const fadeOut = (audio: HTMLAudioElement, callback?: () => void) => {
     let vol = audio.volume;
