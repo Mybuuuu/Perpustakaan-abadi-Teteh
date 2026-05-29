@@ -1,10 +1,7 @@
 import { motion } from 'motion/react';
-import { Film, AlertCircle } from 'lucide-react';
-import { useState } from 'react';
+import { Film } from 'lucide-react';
 
 export default function VideoSection() {
-  const [videoError, setVideoError] = useState(false);
-
   return (
     <motion.section 
       initial={{ opacity: 0, y: 50 }}
@@ -36,26 +33,15 @@ export default function VideoSection() {
         <div className="absolute bottom-[-15px] right-8 w-24 h-10 bg-white/40 backdrop-blur-md border border-white/20 shadow-sm -rotate-3 z-20" />
         
         <div className="w-full relative aspect-video overflow-hidden bg-black/90 shadow-inner flex items-center justify-center">
-          {videoError ? (
-            <div className="text-white/50 flex flex-col items-center gap-4 p-8 text-center">
-              <AlertCircle className="w-12 h-12 text-white/30" />
-              <div>
-                <p className="font-sans font-medium text-lg mb-1">Video not yet uploaded</p>
-                <p className="text-sm">Please upload your actual <code className="bg-white/10 px-1 py-0.5 rounded">draft_v1.mp4</code> file to the <code className="bg-white/10 px-1 py-0.5 rounded">public/videos</code> folder.</p>
-              </div>
-            </div>
-          ) : (
-            <video 
-              className="w-full h-full object-contain"
-              controls
-              playsInline
-              preload="none"
-              onError={() => setVideoError(true)}
-            >
-              <source src="/videos/draft_v1.mp4" type="video/mp4" onError={() => setVideoError(true)} />
-              Your browser does not support the video tag.
-            </video>
-          )}
+          <video 
+            className="w-full h-full object-contain"
+            controls
+            playsInline
+            preload="metadata"
+          >
+            <source src="/videos/draft_v1.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
         </div>
       </motion.div>
     </motion.section>

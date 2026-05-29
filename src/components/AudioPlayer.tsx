@@ -15,23 +15,19 @@ export default function AudioPlayer({ stage, userInteracted, setUserInteracted, 
   const mainAudioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
-    if (userInteracted) {
-      if (!introAudioRef.current) {
-        introAudioRef.current = new Audio('/audio/intro.mp3');
-        introAudioRef.current.loop = true;
-        introAudioRef.current.preload = 'auto';
-      }
-      if (!mainAudioRef.current) {
-        mainAudioRef.current = new Audio('/audio/main.mp3');
-        mainAudioRef.current.loop = true;
-        mainAudioRef.current.preload = 'auto';
-      }
-    }
+    introAudioRef.current = new Audio('/audio/intro.mp3');
+    introAudioRef.current.loop = true;
+    introAudioRef.current.preload = 'none';
+    
+    mainAudioRef.current = new Audio('/audio/main.mp3');
+    mainAudioRef.current.loop = true;
+    mainAudioRef.current.preload = 'none';
+
     return () => {
       introAudioRef.current?.pause();
       mainAudioRef.current?.pause();
     };
-  }, [userInteracted]);
+  }, []);
 
   const fadeOut = (audio: HTMLAudioElement, callback?: () => void) => {
     let vol = audio.volume;
@@ -49,6 +45,7 @@ export default function AudioPlayer({ stage, userInteracted, setUserInteracted, 
   };
 
   const fadeIn = (audio: HTMLAudioElement) => {
+    audio.preload = 'auto'; // Ensure we load on play
     audio.volume = 0;
     const playPromise = audio.play();
     if (playPromise !== undefined) {
@@ -100,14 +97,20 @@ export default function AudioPlayer({ stage, userInteracted, setUserInteracted, 
            mainAudioRef.current?.pause();
         } else {
             if (stage === 'envelope' || stage === 'landing') {
-                introAudioRef.current!.volume = 1;
-                const p = introAudioRef.current?.play();
-                if (p !== undefined) p.catch(e => console.log('Playback error:', e));
+                if (introAudioRef.current) {
+                  introAudioRef.current.preload = 'auto';
+                  introAudioRef.current.volume = 1;
+                  const p = introAudioRef.current.play();
+                  if (p !== undefined) p.catch(e => console.log('Playback error:', e));
+                }
             }
             if (stage === 'scrapbook') {
-                mainAudioRef.current!.volume = 1;
-                const p = mainAudioRef.current?.play();
-                if (p !== undefined) p.catch(e => console.log('Playback error:', e));
+                if (mainAudioRef.current) {
+                  mainAudioRef.current.preload = 'auto';
+                  mainAudioRef.current.volume = 1;
+                  const p = mainAudioRef.current.play();
+                  if (p !== undefined) p.catch(e => console.log('Playback error:', e));
+                }
             }
         }
       }}
